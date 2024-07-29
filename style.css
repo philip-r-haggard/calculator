@@ -36,11 +36,7 @@ body {
     padding: 5px;
 }
 
-.row-1,
-.row-2,
-.row-3,
-.row-4,
-.row-5 {
+.row {
     display: flex;
     justify-content: space-evenly;
     gap: 1px;
