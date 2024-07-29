@@ -13,7 +13,18 @@ body {
     justify-content: center;
     align-items: center;
 
+    font-size: 40px;
     height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    background-color: grey;
+    outline: 2px solid black;
+    padding: 10px;
 }
 
 .display {
@@ -21,33 +32,41 @@ body {
     justify-content: flex-end;
     align-items: center;
 
+    background-color: lightgrey;
     height: 70px;
     outline: 2px solid black;
     padding-right: 5px;
     margin-bottom: 5px;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-
-    outline: 2px solid black;
-    padding: 5px;
-}
-
 .row {
     display: flex;
-    justify-content: space-evenly;
-    gap: 1px;
+    justify-content: baseline;
+    gap: 5px;
 }
 
 .long {
-    flex: 0 0 50%;
+    border-radius: 10px;
+    font-size: 32px;
+    flex: 1 1 50%;
 }
 
 .square {
+    border-radius: 10px;
+    font-size: 32px;
     width: 70px;
     height: 70px;
-    flex: 0 0 25%;
+    flex: 1 1 25%;
+}
+
+.right {
+    background-color: orange;
+}
+
+.top {
+    background-color: red;
+}
+
+.pad {
+    background-color: royalblue;
 }
