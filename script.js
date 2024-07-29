@@ -1,15 +1,21 @@
-const add = function (a, b) {
-    return a + b;
-};
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+const multiply = (a, b) => a * b;
+const divide = (a, b) => a / b;
 
-const subtract = function (a, b) {
-    return a - b;
-};
+function operate(operator, left, right) {
+    switch(operator) {
+        case '+':
+            return add(left, right);
+        case '-':
+            return subtract(left, right);
+        case '*':
+            return multiply(left, right);
+        case '/':
+            return divide(left, right);
+        default:
+            return 'not a symbol';
+    }
+}
 
-const multiply = function (a, b) {
-    return a * b;
-};
-
-const divide = function (a, b) {
-    return a / b;
-};
+let operator, left, right;
