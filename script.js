@@ -19,3 +19,12 @@ function operate(operator, left, right) {
 }
 
 let operator, left, right;
+
+const display = document.querySelector('.display');
+const numberButtons = document.querySelectorAll('.num');
+
+numberButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        display.textContent = e.target.textContent;
+    });
+});
