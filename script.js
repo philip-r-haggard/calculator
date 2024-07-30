@@ -2,6 +2,7 @@ const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
+const negate = (a) => a - (a * 2);
 
 function operate(operator, left, right) {
     switch (operator) {
@@ -14,7 +15,7 @@ function operate(operator, left, right) {
         case '/':
             return divide(left, right);
         default:
-            return 'not a symbol';
+            return 'Woops!';
     }
 }
 
@@ -38,26 +39,44 @@ function formatResult(result) {
 }
 
 function reset() {
-    operator = '';
+    operator = null;
     left = 0;
     right = 0;
-    displayInt = 0;
+    finalValue = 0;
     startOfLeftNumber = true;
     startOfRightNumber = false;
     workingOnLeftNumber = true;
-    finalValue = 0;
     display.textContent = '0';
 }
 
-let operator = '', left = 0, right = 0, displayInt = 0;
-let startOfLeftNumber = true;
-let startOfRightNumber = false;
-let workingOnLeftNumber = true;
-let finalValue = 0;
+function leftNumberHasStarted() {
+    startOfLeftNumber = false;
+}
+
+function hasLeftNumberStarted() {
+    if(startOfLeftNumber === false && workingOnLeftNumber === true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function afterEqual() {
+    operator = null;
+    left = parseInt(display.textContent);
+    right = 0;
+    finalValue = 0;
+    startOfLeftNumber = false;
+    startOfRightNumber = true;
+    workingOnLeftNumber = true;
+}
+
+let operator, left, right, finalValue, startOfLeftNumber, startOfRightNumber, workingOnLeftNumber;
 
 const display = document.querySelector('.display');
 const numberButtons = document.querySelectorAll('.num');
 const operandButtons = document.querySelectorAll('.operand');
+const negateButton = document.querySelector('.negate');
 const clearButton = document.querySelector('.clear');
 const equalButton = document.querySelector('.equal');
 
@@ -68,21 +87,17 @@ numberButtons.forEach(button => {
         if (startOfLeftNumber === true) {
             display.textContent = e.target.textContent;
             left = parseInt(display.textContent);
-            startOfLeftNumber = false;
-            //console.log(`${typeof(left)} ${left}`);
-        } else if (startOfLeftNumber === false && workingOnLeftNumber === true) {
+            leftNumberHasStarted();
+        } else if (hasLeftNumberStarted()) {
             display.textContent = display.textContent + '' + e.target.textContent;
             left = parseInt(display.textContent);
-            //console.log(`${typeof(left)} ${left}`);
         } else if (startOfRightNumber === true && workingOnLeftNumber === false) {
             display.textContent = e.target.textContent;
             right = parseInt(display.textContent);
             startOfRightNumber = false;
-            //console.log(`${typeof(right)} ${right}`);
         } else if (startOfRightNumber === false && workingOnLeftNumber === false) {
             display.textContent = display.textContent + '' + e.target.textContent;
             right = parseInt(display.textContent);
-            //console.log(`${typeof(right)} ${right}`);
         }
     });
 });
@@ -93,7 +108,6 @@ operandButtons.forEach(button => {
             operator = e.target.textContent;
             workingOnLeftNumber = false;
             startOfRightNumber = true;
-            //console.log(`${typeof(operator)} ${operator}`);
         } else if (workingOnLeftNumber === false) {
             let tempFinalValue = operate(operator, left, right);
             left = tempFinalValue;
@@ -102,14 +116,26 @@ operandButtons.forEach(button => {
             startOfRightNumber = true;
             workingOnLeftNumber = false;
             operator = e.target.textContent;
-            //console.log(`${typeof(operator)} ${operator}`);
         }
     });
 });
 
+negateButton.addEventListener("click", () => {
+    if (workingOnLeftNumber === true) {
+        let tempLeftValue = negate(left);
+        left = tempLeftValue;
+        display.textContent = left;
+    } else if (workingOnLeftNumber === false) {
+        let tempRightValue = negate(right);
+        right = tempRightValue;
+        display.textContent = right;
+    }
+});
+
 equalButton.addEventListener("click", () => {
-    finalValue = formatResult(operate(operator, left, right));
-    display.textContent = finalValue;
+    finalValue = operate(operator, left, right);
+    display.textContent = formatResult(finalValue);
+    afterEqual();
 });
 
 clearButton.addEventListener("click", () => {
