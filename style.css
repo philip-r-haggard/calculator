@@ -46,12 +46,14 @@ body {
 }
 
 .long {
+    color: black;
     border-radius: 10px;
     font-size: 32px;
     flex: 1 1 50%;
 }
 
 .square {
+    color: black;
     border-radius: 10px;
     font-size: 32px;
     width: 70px;
