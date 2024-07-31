@@ -13,33 +13,31 @@
     <div class="container">
         <div class="display">0</div>
         <div class="row">
-            <button type="button" class="square top clear">AC</button>
-            <button type="button" class="square top negate">+/-</button>
-            <button type="button" class="square top">%</button>
-            <button type="button" class="square right operand">/</button>
+            <button class="square top" id="clearBtn">CLEAR</button>
         </div>
         <div class="row">
-            <button type="button" class="square num pad">7</button>
-            <button type="button" class="square num pad">8</button>
-            <button type="button" class="square num pad">9</button>
-            <button type="button" class="square right operand">*</button>
+            <button class="square num pad" data-number>7</button>
+            <button class="square num pad" data-number>8</button>
+            <button class="square num pad" data-number>9</button>
+            <button class="square right operand" data-operator>/</button>
         </div>
         <div class="row">
-            <button type="button" class="square num pad">4</button>
-            <button type="button" class="square num pad">5</button>
-            <button type="button" class="square num pad">6</button>
-            <button type="button" class="square right operand">-</button>
+            <button class="square num pad" data-number>4</button>
+            <button class="square num pad" data-number>5</button>
+            <button class="square num pad" data-number>6</button>
+            <button class="square right operand" data-operator>*</button>
         </div>
         <div class="row">
-            <button type="button" class="square num pad">1</button>
-            <button type="button" class="square num pad">2</button>
-            <button type="button" class="square num pad">3</button>
-            <button type="button" class="square right operand">+</button>
+            <button class="square num pad" data-number>1</button>
+            <button class="square num pad" data-number>2</button>
+            <button class="square num pad" data-number>3</button>
+            <button class="square right operand" data-operator>-</button>
         </div>
         <div class="row">
-            <button type="button" class="long num pad">0</button>
-            <button type="button" class="square pad">.</button>
-            <button type="button" class="square right equal">=</button>
+            <button class="square right" id="pointBtn">.</button>
+            <button class="square num pad" data-number>0</button>
+            <button class="square right" id="equalsBtn">=</button>
+            <button class="square right operand" data-operator>+</button>
         </div>
     </div>
 </body>
